@@ -50,7 +50,6 @@ public class VoteForThePoll {
 
         javaBtn.isSelected();
 
-        Thread.sleep(2000);
 
         // 4. Verify VOTE button text is as expected: "VOTE"
         WebElement voteBtn = driver.findElement(By.xpath("//div[@class='bx-vote-buttons']/button[2]"));
@@ -63,7 +62,7 @@ public class VoteForThePoll {
         // 4. Click VOTE button
 
         voteBtn.click();
-        Thread.sleep(2000);
+
 
     }
 
