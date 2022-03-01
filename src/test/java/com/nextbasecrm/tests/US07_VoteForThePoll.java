@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class VoteForThePoll {
+public class US07_VoteForThePoll {
 
     WebDriver driver;
 
@@ -37,22 +37,21 @@ public class VoteForThePoll {
 
         Assert.assertEquals(actualPageTitle, expectedPageTitle);
 
-        // 2. Verify if the Vote massage blog is displayed
+        // 2. Verify if the Vote btn is clicked already, click vote again btn
 
-        WebElement voteMassageBlog = driver.findElement(By.xpath("//div[@id='blg-post-img-6436']"));
+        WebElement voteAgainBtn = driver.findElement(By.xpath("//button[@data-bx-vote-button='showVoteForm']"));
+        voteAgainBtn.click();
 
-        voteMassageBlog.isDisplayed();
+        // 3. Click for Java answer
 
-        // 3. Click on Java answer
-
-        WebElement javaBtn = driver.findElement(By.xpath("//span[@class='bx-vote-block-input-wrap bx-vote-block-radio-wrap']//label[@for='vote_radio_1163_2610']//span"));
+        WebElement javaBtn = driver.findElement(By.xpath("//span[.='JAVA']"));
         javaBtn.click();
 
         javaBtn.isSelected();
 
 
         // 4. Verify VOTE button text is as expected: "VOTE"
-        WebElement voteBtn = driver.findElement(By.xpath("//div[@class='bx-vote-buttons']/button[2]"));
+        WebElement voteBtn = driver.findElement(By.xpath("//button[.='Vote']"));
 
         String expectedVoteText = "VOTE";
         String actualVoteText = voteBtn.getText();
@@ -63,26 +62,13 @@ public class VoteForThePoll {
 
         voteBtn.click();
 
-
-    }
-
-
-    public static void logout_Function(WebDriver driver){
-
-        // 1. User can see "Log out" option when he clicks his profile
-        WebElement profileBtn = driver.findElement(By.xpath("//span[@class='user-name']"));
-        profileBtn.click();
-
-        // 2. User clicks the logout option and goes back to the login page
-        WebElement logoutOption = driver.findElement(By.xpath("//span[.='Log out']"));
-        logoutOption.click();
     }
 
 
     @AfterMethod
     public void closeDriver(){
 
-        logout_Function(driver);
+        CRM_Utilities.logout_Function(driver);
 
         driver.close();
     }

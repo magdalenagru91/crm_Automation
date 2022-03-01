@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class LogoutFunction {
+public class US03_LogoutFunction {
 
     WebDriver driver;
 
