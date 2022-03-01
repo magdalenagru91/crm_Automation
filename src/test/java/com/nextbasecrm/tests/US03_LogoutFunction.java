@@ -29,7 +29,7 @@ public class US03_LogoutFunction {
     }
 
     @Test
-    public void logout_option_is_displayed(){
+    public void CY10_17_logout_option_is_displayed(){
 
         // 1. Users should access the homepage successfully
         // Expected Title: "Portal"
@@ -47,10 +47,12 @@ public class US03_LogoutFunction {
         WebElement logoutOption = driver.findElement(By.xpath("//span[.='Log out']"));
         logoutOption.isDisplayed();
 
+        CRM_Utilities.logout_Function(driver);
+
     }
 
     @Test
-    public void click_logout_option(){
+    public void CY10_26_click_logout_option(){
 
         // 1. Users should be able to access the homepage successfully
         // 2. Users can see "Log out" option in the bottom of the dropdown
@@ -72,6 +74,7 @@ public class US03_LogoutFunction {
 
     @AfterMethod
     public void closeDriver(){
+
         driver.close();
     }
 

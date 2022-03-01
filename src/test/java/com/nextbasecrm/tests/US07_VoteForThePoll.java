@@ -27,7 +27,7 @@ public class US07_VoteForThePoll {
     }
 
     @Test
-    public void vote_forAPoll_withOneAnswer() throws InterruptedException {
+    public void CY10_38_vote_for_a_poll() throws InterruptedException {
 
         // 1. Go to the homepage
         // Expected Title: "Portal"
@@ -37,12 +37,12 @@ public class US07_VoteForThePoll {
 
         Assert.assertEquals(actualPageTitle, expectedPageTitle);
 
-        // 2. Verify if the Vote btn is clicked already, click vote again btn
+        // 2. If the Vote btn is clicked already, click Vote again btn
 
         WebElement voteAgainBtn = driver.findElement(By.xpath("//button[@data-bx-vote-button='showVoteForm']"));
         voteAgainBtn.click();
 
-        // 3. Click for Java answer
+        // 3. Click for JAVA answer
 
         WebElement javaBtn = driver.findElement(By.xpath("//span[.='JAVA']"));
         javaBtn.click();
