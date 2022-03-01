@@ -4,6 +4,7 @@ import com.nextbasecrm.utilities.CRM_Utilities;
 import com.nextbasecrm.utilities.ConfigurationReader;
 import com.nextbasecrm.utilities.WebDriverFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -11,6 +12,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 public class US07_VoteForThePoll {
@@ -24,6 +26,7 @@ public class US07_VoteForThePoll {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(ConfigurationReader.getProperty("env"));
         CRM_Utilities.crm_login(driver, ConfigurationReader.getProperty("HRUsername2"), ConfigurationReader.getProperty("password"));
+
     }
 
     @Test
@@ -39,8 +42,29 @@ public class US07_VoteForThePoll {
 
         // 2. If the Vote btn is clicked already, click Vote again btn
 
+     //   JavascriptExecutor js = (JavascriptExecutor) driver;
+        //js.executeScript("window.scrollBy(0,1000)");
+
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,20000)");
+
+        driver.findElement(By.xpath("//span[.='More Events']")).click();
+
         WebElement voteAgainBtn = driver.findElement(By.xpath("//button[@data-bx-vote-button='showVoteForm']"));
+
         voteAgainBtn.click();
+
+
+     /*       try{
+                WebElement voteAgainBtn =
+                        driver.findElement(By.xpath("//button[@data-bx-vote-button='showVoteForm']"));
+                voteAgainBtn.click();
+
+            }catch (NoSuchElementException e){
+
+            }
+
+      */
+
 
         // 3. Click for JAVA answer
 
@@ -70,7 +94,7 @@ public class US07_VoteForThePoll {
 
         CRM_Utilities.logout_Function(driver);
 
-        driver.close();
+       driver.close();
     }
 
 
