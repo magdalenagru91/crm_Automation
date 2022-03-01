@@ -1,5 +1,6 @@
 package com.nextbasecrm.tests;
 
+import com.nextbasecrm.utilities.BrowserUtils;
 import com.nextbasecrm.utilities.CRM_Utilities;
 import com.nextbasecrm.utilities.ConfigurationReader;
 import com.nextbasecrm.utilities.WebDriverFactory;
@@ -25,12 +26,12 @@ public class US07_VoteForThePoll {
         driver = WebDriverFactory.getDriver(ConfigurationReader.getProperty("browser"));
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(ConfigurationReader.getProperty("env"));
-        CRM_Utilities.crm_login(driver, ConfigurationReader.getProperty("HRUsername2"), ConfigurationReader.getProperty("password"));
+        CRM_Utilities.crm_login(driver, ConfigurationReader.getProperty("HelpdeskUsername2"), ConfigurationReader.getProperty("password"));
 
     }
 
     @Test
-    public void CY10_38_vote_for_a_poll() throws InterruptedException {
+    public void CY10_38_vote_for_a_poll(){
 
         // 1. Go to the homepage
         // Expected Title: "Portal"
@@ -40,41 +41,15 @@ public class US07_VoteForThePoll {
 
         Assert.assertEquals(actualPageTitle, expectedPageTitle);
 
-        // 2. If the Vote btn is clicked already, click Vote again btn
-
-     //   JavascriptExecutor js = (JavascriptExecutor) driver;
-        //js.executeScript("window.scrollBy(0,1000)");
-
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,20000)");
-
-        driver.findElement(By.xpath("//span[.='More Events']")).click();
-
-        WebElement voteAgainBtn = driver.findElement(By.xpath("//button[@data-bx-vote-button='showVoteForm']"));
-
-        voteAgainBtn.click();
-
-
-     /*       try{
-                WebElement voteAgainBtn =
-                        driver.findElement(By.xpath("//button[@data-bx-vote-button='showVoteForm']"));
-                voteAgainBtn.click();
-
-            }catch (NoSuchElementException e){
-
-            }
-
-      */
-
-
-        // 3. Click for JAVA answer
+        // 2. Locate poll and click for JAVA answer
 
         WebElement javaBtn = driver.findElement(By.xpath("//span[.='JAVA']"));
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", javaBtn);
+
         javaBtn.click();
 
-        javaBtn.isSelected();
-
-
-        // 4. Verify VOTE button text is as expected: "VOTE"
+        // 3. Verify VOTE button text is as expected: "VOTE"
         WebElement voteBtn = driver.findElement(By.xpath("//button[.='Vote']"));
 
         String expectedVoteText = "VOTE";
@@ -92,7 +67,7 @@ public class US07_VoteForThePoll {
     @AfterMethod
     public void closeDriver(){
 
-        CRM_Utilities.logout_Function(driver);
+       CRM_Utilities.logout_Function(driver);
 
        driver.close();
     }
