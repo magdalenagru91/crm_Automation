@@ -25,7 +25,7 @@ public class NB_Send_Message {
         // Go to: https://login2.nextbasecrm.com
         driver.get(ConfigurationReader.getProperty("env"));
         WebElement userName = driver.findElement(By.xpath("//input[@name='USER_LOGIN']"));
-        userName.sendKeys(ConfigurationReader.getProperty("MarketingUsername1"));
+        userName.sendKeys(ConfigurationReader.getProperty("MarketingUsername3"));
         WebElement password = driver.findElement(By.xpath("//input[@name='USER_PASSWORD']"));
         password.sendKeys(ConfigurationReader.getProperty("password"));
 
@@ -46,7 +46,7 @@ public class NB_Send_Message {
         driver.switchTo().frame(driver.findElement(By.xpath("//iframe[@class='bx-editor-iframe']")));
 
         //Users type a text "Hello World"
-        WebElement writeMessage = driver.findElement(By.xpath("//body[@contenteditable='true']"));
+        WebElement writeMessage = driver.findElement(By.xpath("//div[starts-with(@id,'blog_post_body')]"));
         writeMessage.sendKeys("Hello World");
         driver.switchTo().parentFrame();
 
