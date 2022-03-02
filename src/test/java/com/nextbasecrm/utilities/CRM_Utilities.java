@@ -40,4 +40,16 @@ public class CRM_Utilities {
         WebElement loginButton = driver.findElement(By.xpath("//input[@value='Log In']"));
         loginButton.click();
     }
+
+
+    public static void logout_Function(WebDriver driver){
+
+        // 1. User can see "Log out" option when he clicks his profile
+        WebElement profileBtn = driver.findElement(By.xpath("//span[@class='user-name']"));
+        profileBtn.click();
+
+        // 2. User clicks the logout option and goes back to the login page
+        WebElement logoutOption = driver.findElement(By.xpath("//span[.='Log out']"));
+        logoutOption.click();
+    }
 }
