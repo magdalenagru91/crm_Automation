@@ -34,12 +34,12 @@ public class TC8Chat_Call_SubModules {
 
     @Test
     public void verify_Message() {
-
+        // find chat and call module and click on it
         WebElement chatCallModule = driver.findElement(By.xpath("//a[@title='Chat and Calls']"));
         chatCallModule.click();
-
+        // find message tab subModule
         WebElement messageTab = driver.findElement(By.xpath("//div[@id='bx-desktop-tab-im']"));
-
+        //Verify Message submodule is displayed
         String actualResult = messageTab.getAttribute("title");
 
         String expectedResult = "Message";
@@ -49,10 +49,12 @@ public class TC8Chat_Call_SubModules {
 
     @Test
     public void verifyNotifications() {
-
+        //Verify chat and call submodule is displayed
         WebElement chatCallModule = driver.findElement(By.xpath("//a[@title='Chat and Calls']"));
         chatCallModule.click();
+        // find notification tab
         WebElement notificationTab = driver.findElement(By.xpath("//div[@data-id='notify']"));
+        //Verify Notification  submodule is displayed
         String actualResult = notificationTab.getAttribute("title");
         String expectedResult = "Notifications";
         Assert.assertEquals(expectedResult, actualResult);
@@ -60,22 +62,23 @@ public class TC8Chat_Call_SubModules {
     @Test
     public void settingsVerify(){
 
+        //Verify chat and call is displayed
         WebElement chatCallModule = driver.findElement(By.xpath("//a[@title='Chat and Calls']"));
         chatCallModule.click();
-
+        // find  Settings
         WebElement settingTab = driver.findElement(By.xpath("//div[@data-id='config']"));
         String actualResult = settingTab.getAttribute("title");
-
+        //Verify Setting  submodule is displayed
         String expectedResult = "Settings";
         Assert.assertEquals(expectedResult, actualResult);
     }
 
    @Test
     public void activeStream(){
-
+        //Verify chat and call is displayed
         WebElement chatCallModule = driver.findElement(By.xpath("//a[@title='Chat and Calls']"));
         chatCallModule.click();
-
+        // find  activity stream
         WebElement activeStreamTab = driver.findElement(By.xpath("//div[@data-id='im-lf']"));
         System.out.println("activeStreamTab.getAttribute(\"title\") = " + activeStreamTab.getAttribute("title"));
         String actualResult = activeStreamTab.getAttribute("title");
